@@ -5,7 +5,7 @@ I wanted a dead-simple, minimalist example of a [JUCE app](https://github.com/ju
 ## DISCLAIMER
 
 - I barely know what I'm doing, use at your own risk
-- This has only been tested on MacOS/Apple Silicon
+- I've only tested on MacOS/Apple Silicon (but user @BaraMGB [got it working on Linux](https://github.com/debrisapron/tracktion-engine-hello-world/pull/1) 🙏)
 - You need licenses to use [JUCE](https://juce.com/get-juce/) and [Tracktion Engine](https://engine.tracktion.com/)
 
 ## Prerequisites
