@@ -1,5 +1,7 @@
 #include <tracktion_engine/tracktion_engine.h>
+#include <memory>
 
+using namespace std;
 namespace te = tracktion;
 using namespace std::literals;
 using namespace te::literals;
@@ -26,21 +28,18 @@ int main()
     te::Engine engine{"Tracktion Hello World"};
 
     // Create an edit
-    te::Edit edit{
+    auto edit = std::make_unique<te::Edit>(
         engine,
-        te::createEmptyEdit(engine),
-        te::Edit::forEditing,
-        nullptr,
-        0};
+        te::Edit::forEditing);
 
     // Create a track
-    edit.ensureNumberOfAudioTracks(1);
-    auto track = te::getAudioTracks(edit)[0];
+    edit->ensureNumberOfAudioTracks(1);
+    auto track = te::getAudioTracks(*edit)[0];
 
     // Get length of 1 bar
     const tracktion::TimeRange oneBarTimeRange(
         0s,
-        edit.tempoSequence.toTime({1, tracktion::BeatDuration()}));
+        edit->tempoSequence.toTime({1, tracktion::BeatDuration()}));
 
     // Insert a 1 bar long Midi clip
     auto clip = track->insertNewClip(
@@ -58,7 +57,7 @@ int main()
     addNoteToClip(midiClip, 72, 100, 3_bp, 0.5_bd);
 
     // Create a built-in synth plugin instance to play the sequence on
-    auto plugin = edit.getPluginCache()
+    auto plugin = edit->getPluginCache()
                       .createNewPlugin(te::FourOscPlugin::xmlTypeName, {})
                       .get();
     auto fourOscPlugin = static_cast<te::FourOscPlugin *>(plugin);
@@ -67,7 +66,7 @@ int main()
     track->pluginList.insertPlugin(*fourOscPlugin, 0, nullptr);
 
     // Get the transport & set it to the start of the edit
-    auto &transport = edit.getTransport();
+    auto &transport = edit->getTransport();
     transport.setPosition(0s);
 
     // Set the transport to loop our clip

@@ -2,6 +2,8 @@
 
 I wanted a dead-simple, minimalist example of a [JUCE app](https://github.com/juce-framework/JUCE) with [Tracktion Engine](https://github.com/Tracktion/tracktion_engine) and couldn't find one, so I made one.
 
+UPDATE 2024-07-21: Now uses TE v3.0! May be a bit wobbly as it's quite new. Use tag v2.1.0 if you want the previous version.
+
 ## DISCLAIMER
 
 - I barely know what I'm doing, use at your own risk

@@ -29,6 +29,8 @@ target_link_libraries(TracktionHelloWorld
         juce::juce_recommended_config_flags
         juce::juce_recommended_warning_flags)
 
+set_property(TARGET TracktionHelloWorld PROPERTY CXX_STANDARD 20)
+
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   target_link_libraries(TracktionHelloWorld PRIVATE "-latomic")
 endif()
